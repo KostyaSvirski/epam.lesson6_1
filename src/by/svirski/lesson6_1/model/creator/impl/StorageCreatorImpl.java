@@ -4,8 +4,8 @@ import by.svirski.lesson6_1.model.creator.CustomCreator;
 import by.svirski.lesson6_1.model.entity.StorageOfBooks;
 import by.svirski.lesson6_1.model.exception.CustomCreationException;
 import by.svirski.lesson6_1.model.exception.CustomParseException;
-import by.svirski.lesson6_1.utils.parser.CustomParser;
-import by.svirski.lesson6_1.utils.parser.impl.ParserNumberImpl;
+import by.svirski.lesson6_1.util.parser.CustomParser;
+import by.svirski.lesson6_1.util.parser.impl.ParserNumberImpl;
 
 public class StorageCreatorImpl implements CustomCreator<StorageOfBooks> {
 

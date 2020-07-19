@@ -25,6 +25,7 @@ public class TestInvoker {
 		CustomResponse response = new CustomResponse();
 		response = invoker.executeRequest("CREATE_STORAGE 5");
 		response = invoker.executeRequest("ADD_BOOK a qwerty AAA 1:1:2000 aaa");
+		response = invoker.executeRequest("ADD_BOOK a qwerty AAA 1:1:2000 aaa");
 		assertTrue(response.getResultOfExecution());
 	}
 

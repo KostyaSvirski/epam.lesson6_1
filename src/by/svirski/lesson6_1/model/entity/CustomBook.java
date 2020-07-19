@@ -94,9 +94,6 @@ public class CustomBook {
 		if (!Arrays.equals(authors, other.authors)) {
 			return false;
 		}
-		if (bookId != other.bookId) {
-			return false;
-		}
 		if (bookName == null) {
 			if (other.bookName != null) {
 				return false;
@@ -115,7 +112,8 @@ public class CustomBook {
 			if (other.publishDate != null) {
 				return false;
 			}
-		} else if (!publishDate.equals(other.publishDate)) {
+		} else if (publishDate.get(1) != other.publishDate.get(1) || publishDate.get(2) != other.publishDate.get(2)
+				|| publishDate.get(3) != other.publishDate.get(3)) {
 			return false;
 		}
 		if (publishingHouse == null) {

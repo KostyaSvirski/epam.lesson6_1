@@ -1,7 +1,7 @@
-package by.svirski.lesson6_1.utils.parser.impl;
+package by.svirski.lesson6_1.util.parser.impl;
 
 import by.svirski.lesson6_1.model.exception.CustomParseException;
-import by.svirski.lesson6_1.utils.parser.CustomParser;
+import by.svirski.lesson6_1.util.parser.CustomParser;
 
 public class ParserNumberImpl implements CustomParser<Integer> {
 

@@ -5,13 +5,12 @@ import java.util.List;
 import by.svirski.lesson6_1.model.entity.CustomBook;
 import by.svirski.lesson6_1.model.entity.StorageOfBooks;
 import by.svirski.lesson6_1.model.exception.CustomDaoException;
-import by.svirski.lesson6_1.model.exception.CustomStorageException;
 
 public interface BookListDao {
 
 	StorageOfBooks createStorage(String capacity) throws CustomDaoException;
 
-	boolean addBook(String... parameters) throws CustomDaoException, CustomStorageException;
+	boolean addBook(String... parameters) throws CustomDaoException;
 
 	boolean removeBookById(int id) throws CustomDaoException;
 

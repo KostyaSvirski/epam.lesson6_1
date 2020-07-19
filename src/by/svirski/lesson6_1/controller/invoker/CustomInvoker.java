@@ -5,10 +5,10 @@ import by.svirski.lesson6_1.controller.provider.CommandProvider;
 import by.svirski.lesson6_1.controller.response.CustomResponse;
 
 public class CustomInvoker {
-	
+
 	public CustomResponse executeRequest(String request) {
 		String[] parsedRequest = request.split(" ", 2);
-		if(parsedRequest.length < 2 || parsedRequest[0].isBlank() || parsedRequest[1].isBlank()) {
+		if (parsedRequest.length < 2 || parsedRequest[0].isBlank() || parsedRequest[1].isBlank()) {
 			CustomResponse responseErr = new CustomResponse();
 			responseErr.setError(true);
 			return responseErr;

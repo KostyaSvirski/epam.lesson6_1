@@ -1,4 +1,4 @@
-package by.svirski.lesson6_1.utils.parser;
+package by.svirski.lesson6_1.util.parser;
 
 import by.svirski.lesson6_1.model.exception.CustomParseException;
 

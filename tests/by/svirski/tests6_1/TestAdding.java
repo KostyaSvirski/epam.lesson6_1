@@ -13,7 +13,7 @@ import by.svirski.lesson6_1.model.entity.StorageOfBooks;
 import by.svirski.lesson6_1.model.exception.CustomServiceException;
 import by.svirski.lesson6_1.model.service.impl.AppServiceImpl;
 
-public class TestStorage {
+public class TestAdding {
 
 	private StorageOfBooks storage;
 
@@ -21,19 +21,19 @@ public class TestStorage {
 	public void createStorage() {
 		AppServiceImpl service = new AppServiceImpl();
 		try {
-			storage = service.createStorage("3");
+			storage = service.createStorage("4");
 		} catch (CustomServiceException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	@DataProvider(name = "booksParams")
+	@DataProvider(name = "booksParamsFirst")
 	public Object[][] createParams() {
 		return new Object[][] { { "a", "qwer", "A", "1:1:2000", "AAA" }, { "b", "qwer", "B", "1:1:2000", "BBB" },
-				{ "c", "asdf zxcv", "C", "2:1:2000", "CCC" }};
+				{ "c", "asdf zxcv", "C", "2:1:2000", "CCC" } };
 	}
 
-	@Test(dataProvider = "booksParams", groups = { "correctInput" })
+	@Test(dataProvider = "booksParamsFirst", groups = { "correctInput" })
 	public void testAdding(String nameOfBook, String authors, String genre, String date, String publisher) {
 		AppServiceImpl service = new AppServiceImpl();
 		try {
@@ -45,16 +45,29 @@ public class TestStorage {
 		}
 	}
 
-	@Test(groups = { "inCorrectInput" })
-	public void testAddingExtra() {
+	@Test(groups = { "incorrectInput" })
+	public void testAddingSame() {
 		AppServiceImpl service = new AppServiceImpl();
 		try {
-			boolean actual = service.addBook("a", "qwer", "A", "1:1:2000", "AAA" );
+			boolean actual = service.addBook("a", "qwer", "A", "1:1:2000", "AAA");
 			assertFalse(actual);
 		} catch (CustomServiceException e) {
 			fail();
 			e.printStackTrace();
 		}
 	}
-
+	
+	@Test(groups = {"incorrectInput"})
+	public void testAddingExtra() {
+		AppServiceImpl service = new AppServiceImpl();
+		try {
+			boolean actual = service.addBook("q", "qwer", "A", "1:1:2000", "AAA");
+			actual = service.addBook("j", "qwer", "A", "1:1:2000", "AAA");
+			assertFalse(actual);
+		} catch (CustomServiceException e) {
+			fail();
+			e.printStackTrace();
+		}
+	}
+	
 }

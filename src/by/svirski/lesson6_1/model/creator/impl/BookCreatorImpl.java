@@ -6,8 +6,8 @@ import by.svirski.lesson6_1.model.creator.CustomCreator;
 import by.svirski.lesson6_1.model.entity.CustomBook;
 import by.svirski.lesson6_1.model.exception.CustomCreationException;
 import by.svirski.lesson6_1.model.exception.CustomParseException;
-import by.svirski.lesson6_1.utils.parser.CustomParser;
-import by.svirski.lesson6_1.utils.parser.impl.ParserDateImpl;
+import by.svirski.lesson6_1.util.parser.CustomParser;
+import by.svirski.lesson6_1.util.parser.impl.ParserDateImpl;
 
 public class BookCreatorImpl implements CustomCreator<CustomBook> {
 

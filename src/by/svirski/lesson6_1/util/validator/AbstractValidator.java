@@ -1,4 +1,4 @@
-package by.svirski.lesson6_1.utils.validator;
+package by.svirski.lesson6_1.util.validator;
 
 public abstract class AbstractValidator {
 	

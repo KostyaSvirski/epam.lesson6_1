@@ -25,7 +25,7 @@ public class BookListDaoImpl implements BookListDao {
 	}
 
 	@Override
-	public boolean addBook(String... parameters) throws CustomDaoException, CustomStorageException {
+	public boolean addBook(String... parameters) throws CustomDaoException {
 		try {
 			StorageOfBooks storage = StorageOfBooks.getInstance();
 			BookCreatorImpl bookCreator = new BookCreatorImpl();
@@ -34,7 +34,7 @@ public class BookListDaoImpl implements BookListDao {
 				try {
 					return storage.addBookToStorage(book);
 				} catch (CustomStorageException e) {
-					throw new CustomStorageException("error adding: " + e.getMessage());
+					throw new CustomDaoException("error adding: " + e.getMessage());
 				}
 			} catch (CustomCreationException e) {
 				throw new CustomDaoException("error in creation: " + e.getMessage());

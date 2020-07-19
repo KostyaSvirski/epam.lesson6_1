@@ -1,9 +1,9 @@
-package by.svirski.lesson6_1.utils.validator.impl;
+package by.svirski.lesson6_1.util.validator.impl;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import by.svirski.lesson6_1.utils.validator.AbstractValidator;
+import by.svirski.lesson6_1.util.validator.AbstractValidator;
 
 public class ValidatorNumberImpl extends AbstractValidator {
 

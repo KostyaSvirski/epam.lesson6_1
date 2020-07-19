@@ -14,9 +14,9 @@ import by.svirski.lesson6_1.model.exception.CustomValidationException;
 import by.svirski.lesson6_1.model.service.CustomSelect;
 import by.svirski.lesson6_1.model.service.CustomService;
 import by.svirski.lesson6_1.model.service.CustomSort;
-import by.svirski.lesson6_1.utils.validator.impl.ValidatorDateImpl;
-import by.svirski.lesson6_1.utils.validator.impl.ValidatorNumberImpl;
-import by.svirski.lesson6_1.utils.validator.impl.ValidatorStringsImpl;
+import by.svirski.lesson6_1.util.validator.impl.ValidatorDateImpl;
+import by.svirski.lesson6_1.util.validator.impl.ValidatorNumberImpl;
+import by.svirski.lesson6_1.util.validator.impl.ValidatorStringsImpl;
 
 public class AppServiceImpl implements CustomService {
 
@@ -50,15 +50,11 @@ public class AppServiceImpl implements CustomService {
 		}
 		boolean result = false;
 		try {
-			try {
-				result = bookListDao.addBook(parameters);
-				return result;
-			} catch (CustomStorageException e) {
-				//throw new CustomServiceException("error in storage: " + e.getMessage());
-				return result;
-			}
+			result = bookListDao.addBook(parameters);
+			return result;
 		} catch (CustomDaoException e) {
-			throw new CustomServiceException("error in dao: " + e.getMessage());
+			//throw new CustomServiceException("error in storage: " + e.getMessage());
+			return false;
 		}
 	}
 
