@@ -13,6 +13,14 @@ public class CustomBook {
 	private Calendar publishDate;
 	private String publishingHouse;
 
+	public CustomBook(String bookName, String[] authors, String genre, Calendar publishDate, String publishingHouse) {
+		this.bookName = bookName;
+		this.authors = authors;
+		this.genre = genre;
+		this.publishDate = publishDate;
+		this.publishingHouse = publishingHouse;
+	}
+
 	public CustomBook() {
 
 	}

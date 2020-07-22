@@ -9,7 +9,6 @@ import by.svirski.lesson6_1.model.entity.StorageOfBooks;
 import by.svirski.lesson6_1.model.exception.CustomDaoException;
 import by.svirski.lesson6_1.model.exception.CustomSelectionException;
 import by.svirski.lesson6_1.model.exception.CustomServiceException;
-import by.svirski.lesson6_1.model.exception.CustomStorageException;
 import by.svirski.lesson6_1.model.exception.CustomValidationException;
 import by.svirski.lesson6_1.model.service.CustomSelect;
 import by.svirski.lesson6_1.model.service.CustomService;
@@ -18,7 +17,7 @@ import by.svirski.lesson6_1.util.validator.impl.ValidatorDateImpl;
 import by.svirski.lesson6_1.util.validator.impl.ValidatorNumberImpl;
 import by.svirski.lesson6_1.util.validator.impl.ValidatorStringsImpl;
 
-public class AppServiceImpl implements CustomService {
+public class AppServiceImpl implements CustomService<TreeSet<CustomBook>> {
 
 	@Override
 	public StorageOfBooks createStorage(String capacity) throws CustomServiceException {

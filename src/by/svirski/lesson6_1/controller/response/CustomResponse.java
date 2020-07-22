@@ -51,8 +51,6 @@ public class CustomResponse {
 		return listFound;
 	}
 		
-	
-	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
