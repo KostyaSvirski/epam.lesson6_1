@@ -11,13 +11,13 @@ import by.svirski.lesson6_1.model.entity.CustomBook;
 import by.svirski.lesson6_1.model.exception.CustomServiceException;
 import by.svirski.lesson6_1.model.service.impl.AppServiceDbImpl;
 
-public class testDB {
+public class TestDB {
 	
 	@Test
 	public void addElement() {
 		AppServiceDbImpl service = new AppServiceDbImpl();
 		try {
-			boolean actual = service.addBook(new String[] { "a", "qwert", "A", "1:1:2000", "AAA" });
+			boolean actual = service.addBook(new String[] { "a", "Ray Bradbury", "A", "1:1:2000", "AAA" });
 			assertTrue(actual);
 		} catch (CustomServiceException e) {
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class testDB {
 	public void findElements() {
 		AppServiceDbImpl service = new AppServiceDbImpl();
 		try {
-			List<CustomBook> listOfBooks = service.findBookByTag("Authors", "qwert");
+			List<CustomBook> listOfBooks = service.findBookByTag("NameOfBook", "Ayn Rand");
 			System.out.println(listOfBooks.toString());
 			boolean actual = true;
 			assertTrue(actual);

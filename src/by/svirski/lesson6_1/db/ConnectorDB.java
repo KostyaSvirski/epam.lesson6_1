@@ -9,7 +9,6 @@ public class ConnectorDB {
 	
 	//FIXME 23.07.2020 1:58 not working with Strings
 	public static Connection getConnection() throws SQLException {		
-		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		
 		ResourceBundle rb = ResourceBundle.getBundle("database");
 		String url = rb.getString("db.url");

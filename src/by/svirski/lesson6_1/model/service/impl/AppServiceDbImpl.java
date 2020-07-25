@@ -78,7 +78,7 @@ public class AppServiceDbImpl implements CustomService<List<CustomBook>> {
 		List<CustomBook> listOfBooks = null;
 		if(validator.validate(typeOfSorting)) {
 			try {
-				listOfBooks = bookListDao.SortBooksByTag(typeOfSorting);
+				listOfBooks = bookListDao.sortBooksByTag(typeOfSorting);
 			} catch (CustomDaoException e) {
 				throw new CustomServiceException(e.getMessage());
 			}
@@ -98,7 +98,7 @@ public class AppServiceDbImpl implements CustomService<List<CustomBook>> {
 		List<CustomBook> listOfBooks = null;
 		if(validator.validate(tagToFind) && validator.validate(parameter)) {
 			try {
-				listOfBooks = bookListDao.FindBooksByTag(tagToFind, parameter);
+				listOfBooks = bookListDao.findBooksByTag(tagToFind, parameter);
 			} catch (CustomDaoException e) {
 				throw new CustomServiceException(e.getMessage());
 			}

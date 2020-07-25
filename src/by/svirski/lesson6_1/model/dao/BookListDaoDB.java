@@ -11,7 +11,9 @@ public interface BookListDaoDB {
 
 	boolean removeBook(String name) throws CustomDaoException;
 	
-	List<CustomBook> SortBooksByTag(String tag) throws CustomDaoException;
+	List<CustomBook> sortBooksByTag(String tag) throws CustomDaoException;
 	
-	List<CustomBook> FindBooksByTag(String tag, String value) throws CustomDaoException;
+	List<CustomBook> findBooksByTag(String tag, String value) throws CustomDaoException;
+	
+	
 }

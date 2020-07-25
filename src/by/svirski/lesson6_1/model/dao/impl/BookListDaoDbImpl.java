@@ -17,9 +17,13 @@ import by.svirski.lesson6_1.util.parser.impl.ParserDateImpl;
 public class BookListDaoDbImpl implements BookListDaoDB {
 
 	private final static String INSERT_SQL = "INSERT INTO books (NameOfBook, Authors, Genre, DateOfPublish, PublishHouse) VALUES (?, ?, ?, ?, ?)";
-	private final static String SORTING_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books ORDER BY ? DESC";
+	private final static String SORTING_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books ORDER BY ? ASC";
 	private final static String DELETE_SQL = "DELETE FROM books WHERE NameOfBook = ?";
-	private final static String FIND_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE ? = ?";
+	private final static String FIND_AUTHORS_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE Authors = ?";
+	private final static String FIND_NAME_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE NameOfBook = ?";
+	private final static String FIND_GENRE_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE Genre = ?";
+	private final static String FIND_DATE_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE DateOfPublish = ?";
+	private final static String FIND_PUBLISHER_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE PublishHouse = ?";
 
 	private Connection cn;
 
@@ -77,7 +81,7 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 	}
 
 	@Override
-	public List<CustomBook> SortBooksByTag(String tag) throws CustomDaoException {
+	public List<CustomBook> sortBooksByTag(String tag) throws CustomDaoException {
 		PreparedStatement pr = null;
 		List<CustomBook> resultList = null;
 		try {
@@ -91,21 +95,23 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 		finally {
 			try {
 				pr.close();
+				cn.close();
 			} catch (SQLException e) {
 				throw new CustomDaoException("error in closing resourse" + e.getMessage());
 			}
 		}
 		return resultList;
 	}
-
+	
+	//TODO 25.07.2020 13:53 remake this to commands
 	@Override
-	public List<CustomBook> FindBooksByTag(String tag, String value) throws CustomDaoException {
+	public List<CustomBook> findBooksByTag(String tag, String value) throws CustomDaoException {
 		PreparedStatement pr = null;
 		List<CustomBook> resultList = null;
 		try {
-			pr = cn.prepareStatement(FIND_SQL);
-			pr.setString(1, tag);
-			pr.setString(2, value);
+			pr = cn.prepareStatement(FIND_AUTHORS_SQL);
+			//pr.setString(1, tag);
+			pr.setString(1, value);
 			ResultSet rs = pr.executeQuery();
 			resultList = createResultList(rs);
 		} catch (SQLException e) {
