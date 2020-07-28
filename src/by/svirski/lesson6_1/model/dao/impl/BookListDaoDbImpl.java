@@ -84,7 +84,6 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 		sb.append(tag);
 		try {
 			pr = cn.prepareStatement(sb.toString());
-			//pr.setString(1, tag);
 			ResultSet rs = pr.executeQuery();
 			resultList = createResultList(rs);
 		} catch (SQLException e) {
