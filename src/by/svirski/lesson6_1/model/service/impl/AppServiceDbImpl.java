@@ -5,7 +5,6 @@ import java.util.List;
 import by.svirski.lesson6_1.model.dao.BookListDaoDB;
 import by.svirski.lesson6_1.model.dao.impl.BookListDaoDbImpl;
 import by.svirski.lesson6_1.model.entity.CustomBook;
-import by.svirski.lesson6_1.model.entity.StorageOfBooks;
 import by.svirski.lesson6_1.model.exception.CustomDaoException;
 import by.svirski.lesson6_1.model.exception.CustomServiceException;
 import by.svirski.lesson6_1.model.service.CustomService;
@@ -13,12 +12,6 @@ import by.svirski.lesson6_1.util.validator.impl.ValidatorDateImpl;
 import by.svirski.lesson6_1.util.validator.impl.ValidatorStringsImpl;
 
 public class AppServiceDbImpl implements CustomService<List<CustomBook>> {
-
-	@Override
-	public StorageOfBooks createStorage(String capacity) throws CustomServiceException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public boolean addBook(String... parameters) throws CustomServiceException {
