@@ -51,7 +51,6 @@ public class TestDB {
 		}
 	}
 	
-	//TODO 23.07.2020 1:51 fix Tag find;
 	@Test
 	public void findElements() {
 		AppServiceDbImpl service = new AppServiceDbImpl();

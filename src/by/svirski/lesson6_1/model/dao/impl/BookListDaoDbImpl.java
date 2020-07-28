@@ -18,7 +18,7 @@ import by.svirski.lesson6_1.model.exception.CustomDaoException;
 public class BookListDaoDbImpl implements BookListDaoDB {
 
 	private final static String INSERT_SQL = "INSERT INTO books (NameOfBook, Authors, Genre, DateOfPublish, PublishHouse) VALUES (?, ?, ?, ?, ?)";
-	private final static String SORTING_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books ORDER BY ? ASC";
+	private final static String SORTING_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books ORDER BY ";
 	private final static String DELETE_SQL = "DELETE FROM books WHERE NameOfBook = ?";
 
 	private Connection cn;
@@ -80,9 +80,11 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 	public List<CustomBook> sortBooksByTag(String tag) throws CustomDaoException {
 		PreparedStatement pr = null;
 		List<CustomBook> resultList = null;
+		StringBuilder sb = new StringBuilder(SORTING_SQL);
+		sb.append(tag);
 		try {
-			pr = cn.prepareStatement(SORTING_SQL);
-			pr.setString(1, tag);
+			pr = cn.prepareStatement(sb.toString());
+			//pr.setString(1, tag);
 			ResultSet rs = pr.executeQuery();
 			resultList = createResultList(rs);
 		} catch (SQLException e) {
