@@ -11,7 +11,7 @@ import by.svirski.lesson6_1.model.entity.CustomBook;
 import by.svirski.lesson6_1.model.exception.CustomServiceException;
 import by.svirski.lesson6_1.model.service.impl.AppServiceDbImpl;
 
-public class TestDB {
+public class TestDaoDb {
 	
 	@Test
 	public void addElement() {

@@ -1,29 +1,26 @@
 package by.svirski.lesson6_1.controller.command.impl;
 
-import java.util.TreeSet;
+import java.util.List;
 
 import by.svirski.lesson6_1.controller.command.ActionCommand;
 import by.svirski.lesson6_1.controller.response.CustomResponse;
 import by.svirski.lesson6_1.model.entity.CustomBook;
 import by.svirski.lesson6_1.model.exception.CustomServiceException;
-import by.svirski.lesson6_1.model.exception.CustomValidationException;
-import by.svirski.lesson6_1.model.service.impl.AppServiceImpl;
+import by.svirski.lesson6_1.model.service.impl.AppServiceDbImpl;
 
 public class SortCommand implements ActionCommand {
 
 	@Override
 	public CustomResponse execute(String request) {
 		CustomResponse response = new CustomResponse();
-		AppServiceImpl service = new AppServiceImpl();
+		AppServiceDbImpl service = new AppServiceDbImpl();
 		try {
-			TreeSet<CustomBook> sortedList = service.sortByTag(request);
-			response.setSortedList(sortedList);
+			List<CustomBook> sortedList = service.sortByTag(request);
+			response.setListFound(sortedList);
 		} catch (CustomServiceException e) {
 			response.setError(true);
-		} catch (CustomValidationException e) {
-			response.setError(true);
+			return response;
 		}
 		return response;
 	}
-
 }
