@@ -47,6 +47,7 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 		} finally {
 			try {
 				pr.close();
+				cn.close();
 			} catch (SQLException e) {
 				throw new CustomDaoException("error in closing resourse" + e.getMessage());
 			}
@@ -69,6 +70,7 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 		finally {
 			try {
 				pr.close();
+				cn.close();
 			} catch (SQLException e) {
 				throw new CustomDaoException("error in closing resourse" + e.getMessage());
 			}

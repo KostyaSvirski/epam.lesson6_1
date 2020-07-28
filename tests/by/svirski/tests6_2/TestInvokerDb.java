@@ -32,7 +32,6 @@ public class TestInvokerDb {
 		CustomInvoker invoker = new CustomInvoker();
 		CustomResponse response = new CustomResponse();
 		response = invoker.executeRequest("FIND_BOOKS name Fahrenheit 451");
-		System.out.println(response.getListFound().toString());
 		assertFalse(response.getError());
 	}
 	
@@ -41,7 +40,6 @@ public class TestInvokerDb {
 		CustomInvoker invoker = new CustomInvoker();
 		CustomResponse response = new CustomResponse();
 		response = invoker.executeRequest("SORT_BOOKS nameOfBook");
-		System.out.println(response.getListFound().toString());
 		assertFalse(response.getError());
 	}
 	
