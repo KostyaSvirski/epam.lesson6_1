@@ -149,7 +149,7 @@ public class CustomBook {
 		builder.append(publishDate);
 		builder.append(", publishingHouse=");
 		builder.append(publishingHouse);
-		builder.append("]\n");
+		builder.append("]");
 		return builder.toString();
 	}
 }

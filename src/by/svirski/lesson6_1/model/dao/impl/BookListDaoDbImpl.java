@@ -120,6 +120,4 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 		return listOfBooks;
 	}
 
-	
-
 }
