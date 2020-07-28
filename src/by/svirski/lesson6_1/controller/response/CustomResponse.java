@@ -1,13 +1,12 @@
 package by.svirski.lesson6_1.controller.response;
 
 import java.util.List;
-import java.util.TreeSet;
 
 import by.svirski.lesson6_1.model.entity.CustomBook;
 
 public class CustomResponse {
 	
-	private TreeSet<CustomBook> sortedList;
+	private List<CustomBook> sortedList;
 	private List<CustomBook> listFound;
 	private boolean isExecuted;
 	private boolean isError;
@@ -23,7 +22,7 @@ public class CustomResponse {
 		this.isError = isError;
 	}
 
-	public void setSortedList(TreeSet<CustomBook> sortedList) {
+	public void setSortedList(List<CustomBook> sortedList) {
 		this.sortedList = sortedList;
 	}
 
@@ -43,7 +42,7 @@ public class CustomResponse {
 		return isError;
 	}
 
-	public TreeSet<CustomBook> getSortedList() {
+	public List<CustomBook> getSortedList() {
 		return sortedList;
 	}
 	
