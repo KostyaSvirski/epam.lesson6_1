@@ -9,21 +9,17 @@ import java.sql.PreparedStatement;
 
 import by.svirski.lesson6_1.db.ConnectorDB;
 import by.svirski.lesson6_1.model.dao.BookListDaoDB;
+import by.svirski.lesson6_1.model.dao.command.TagActionCommand;
+import by.svirski.lesson6_1.model.dao.provider.TagProvider;
 import by.svirski.lesson6_1.model.entity.CustomBook;
+import by.svirski.lesson6_1.model.exception.CustomCommandException;
 import by.svirski.lesson6_1.model.exception.CustomDaoException;
-import by.svirski.lesson6_1.model.exception.CustomParseException;
-import by.svirski.lesson6_1.util.parser.impl.ParserDateImpl;
 
 public class BookListDaoDbImpl implements BookListDaoDB {
 
 	private final static String INSERT_SQL = "INSERT INTO books (NameOfBook, Authors, Genre, DateOfPublish, PublishHouse) VALUES (?, ?, ?, ?, ?)";
 	private final static String SORTING_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books ORDER BY ? ASC";
 	private final static String DELETE_SQL = "DELETE FROM books WHERE NameOfBook = ?";
-	private final static String FIND_AUTHORS_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE Authors = ?";
-	private final static String FIND_NAME_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE NameOfBook = ?";
-	private final static String FIND_GENRE_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE Genre = ?";
-	private final static String FIND_DATE_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE DateOfPublish = ?";
-	private final static String FIND_PUBLISHER_SQL = "SELECT NameOfBook, Authors, Genre, DateOfPublish, PublishHouse FROM books WHERE PublishHouse = ?";
 
 	private Connection cn;
 
@@ -103,57 +99,24 @@ public class BookListDaoDbImpl implements BookListDaoDB {
 		return resultList;
 	}
 	
-	//TODO 25.07.2020 13:53 remake this to commands
 	@Override
 	public List<CustomBook> findBooksByTag(String tag, String value) throws CustomDaoException {
-		PreparedStatement pr = null;
-		List<CustomBook> resultList = null;
-		try {
-			pr = cn.prepareStatement(FIND_AUTHORS_SQL);
-			//pr.setString(1, tag);
-			pr.setString(1, value);
-			ResultSet rs = pr.executeQuery();
-			resultList = createResultList(rs);
-		} catch (SQLException e) {
-			throw new CustomDaoException("error in finding");
-		}
-		finally {
-			try {
-				pr.close();
-			} catch (SQLException e) {
-				throw new CustomDaoException("error in closing resourse" + e.getMessage());
-			}
-		}
-		return resultList;
-	}
-
-	private List<CustomBook> createResultList(ResultSet rs) throws CustomDaoException {
-		ParserDateImpl parser = new ParserDateImpl();
+		TagActionCommand command = TagProvider.defineTag(tag);
 		List<CustomBook> listOfBooks = new ArrayList<CustomBook>();
 		try {
-			String[] parameters = new String[5];
-			while (rs.next()) {
-				for (int i = 0; i < parameters.length; i++) {
-					parameters[i] = rs.getString(i + 1);
-				}
-				try {
-					listOfBooks.add(new CustomBook(parameters[0], parameters[1].split(" "), parameters[2],
-							parser.parse(parameters[3]), parameters[4]));
-				} catch (CustomParseException e) {
-					throw new CustomDaoException("error in parsing");
-				}
-			}
-		} catch (SQLException e) {
-			throw new CustomDaoException("error in reading result set" + e.getMessage());
-		}
-		finally {
+			listOfBooks = command.find(value, cn);
+		} catch (CustomCommandException e) {
+			throw new CustomDaoException("error in finding " + e.getMessage());
+		} finally {
 			try {
-				rs.close();
+				cn.close();
 			} catch (SQLException e) {
 				throw new CustomDaoException("error in closing resourse" + e.getMessage());
 			}
 		}
 		return listOfBooks;
 	}
+
+	
 
 }

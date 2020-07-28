@@ -56,7 +56,7 @@ public class TestDB {
 	public void findElements() {
 		AppServiceDbImpl service = new AppServiceDbImpl();
 		try {
-			List<CustomBook> listOfBooks = service.findBookByTag("NameOfBook", "Ayn Rand");
+			List<CustomBook> listOfBooks = service.findBookByTag("publishing house", "Random House");
 			System.out.println(listOfBooks.toString());
 			boolean actual = true;
 			assertTrue(actual);
