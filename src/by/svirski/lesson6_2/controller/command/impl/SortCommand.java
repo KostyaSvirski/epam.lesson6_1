@@ -16,7 +16,7 @@ public class SortCommand implements ActionCommand {
 		AppServiceDbImpl service = new AppServiceDbImpl();
 		try {
 			List<CustomBook> sortedList = service.sortByTag(request);
-			response.setListFound(sortedList);
+			response.setSortedList(sortedList);
 		} catch (CustomServiceException e) {
 			response.setError(true);
 			return response;
